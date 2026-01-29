@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-01-29c — Hardening Complete, Rotation Prepared
+
+### Added
+- `ROTATION.md` — Step-by-step secret rotation procedure for all 5 exposed secrets
+- Rotation schedule recommendations (90-day for tokens, 180-day for API keys)
+- Post-rotation verification checklist
+- Quick reference for jq-based config editing on mon1
+
+### Fixed
+- Changed Discord `groupPolicy` from `"open"` to `"allowlist"` on mon1
+- Fixed 8 credential file permissions on tensor-core (0664 → 0600)
+- Fixed gdrive_tokens directory on tensor-core (0775 → 0700)
+- Fixed `/opt/bretalon_report_bot.env` on tensor-core (0644 → 0600)
+- Confirmed no client_secret files on mon1 Downloads (clean)
+
+### Status
+- All automated hardening complete
+- 5 secrets require manual rotation by operator (see ROTATION.md)
+
 ## 2026-01-29b — mon1 Audit Complete
 
 ### Added

@@ -38,6 +38,7 @@ moltbot-hardening/
 ├── README.md                 # This file
 ├── AUDIT.md                  # Full audit findings
 ├── HARDENING.md              # Step-by-step hardening guide
+├── ROTATION.md               # Secret rotation procedures
 ├── RESIDUAL-RISKS.md         # Accepted risks and rationale
 ├── scripts/
 │   ├── audit-check.sh        # Automated audit script

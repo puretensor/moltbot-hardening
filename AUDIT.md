@@ -201,18 +201,22 @@ Files also fixed:
 - [x] Verified no ClawdHub skills installed
 - [x] Verified no MCP servers configured
 - [x] Verified operator device bound to loopback
+- [x] Changed Discord `groupPolicy` from `"open"` to `"allowlist"` on mon1
+- [x] Fixed credential file permissions on tensor-core (8 files: 0664 → 0600)
+- [x] Fixed gdrive_tokens directory on tensor-core (0775 → 0700)
+- [x] Fixed `/opt/bretalon_report_bot.env` on tensor-core (0644 → 0600)
+- [x] Secured downloaded OAuth client secrets in `~/Downloads/` (0664 → 0600)
+- [x] No client_secret files found on mon1 Downloads (clean)
+- [x] Documented secret rotation procedure (see ROTATION.md)
 
-### Pending
+### Pending (require manual intervention)
 
-- [ ] Change Discord `groupPolicy` from `"open"` to `"allowlist"`
-- [ ] Fix credential file permissions on tensor-core (GDrive, HuggingFace, .env files)
-- [ ] Remove downloaded OAuth client secrets from `~/Downloads/` on tensor-core
+- [ ] Rotate Telegram bot token (via @BotFather)
+- [ ] Rotate Discord bot token (via Developer Portal)
+- [ ] Rotate web search API key (Brave Search)
+- [ ] Rotate Google Search API key (via GCP Console)
+- [ ] Rotate Google API key in `.env` (via GCP Console)
 - [ ] Verify gateway mode `"local"` = loopback in ClawdBot documentation
-- [ ] Rotate Telegram bot token
-- [ ] Rotate Discord bot token
-- [ ] Rotate web search API key
-- [ ] Rotate Google Search API key
-- [ ] Rotate Google API key in `.env`
 - [ ] Implement credential encryption (Phase 2.3)
 - [ ] Add monitoring dashboards (Phase 4)
 
