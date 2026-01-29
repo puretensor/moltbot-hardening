@@ -1,0 +1,55 @@
+# Hardened Gateway Configuration for Moltbot/ClawdBot
+#
+# Apply to: ~/.moltbot/moltbot.json or ~/.clawdbot/clawdbot.json
+# Convert from YAML to JSON before applying (this file is for documentation)
+
+# Gateway settings — CRITICAL
+gateway:
+  # Bind to loopback ONLY — prevents auth bypass when behind reverse proxy
+  bind: "loopback"
+  # Alternative: bind to specific IP
+  # bind: "127.0.0.1"
+
+  # Disable if not needed — reduces attack surface
+  enabled: false
+  # If enabled, require authentication
+  # auth:
+  #   enabled: true
+  #   method: "token"
+
+# DM Policy — require approval for new contacts
+# Prevents unsolicited command injection via direct messages
+dmPolicy: "pairing"
+
+# Security settings
+security:
+  # Sandbox skill execution
+  sandbox:
+    enabled: true
+    # See sandbox-policy.yaml for detailed settings
+
+  # Rate limiting
+  rateLimit:
+    enabled: true
+    maxRequestsPerMinute: 30
+    maxRequestsPerHour: 500
+
+  # Allowed origins (if gateway is enabled)
+  cors:
+    allowedOrigins:
+      - "http://127.0.0.1"
+      - "http://localhost"
+
+# Logging
+logging:
+  level: "info"
+  audit: true
+  auditPath: "/var/log/moltbot/audit.log"
+  # Log all API calls for security review
+  logApiCalls: true
+
+# Skills — only allow explicitly approved skills
+skills:
+  allowClawdHub: false  # Disable ClawdHub until skills are audited
+  # allowedSkills:
+  #   - "skill-name-here"

@@ -1,0 +1,59 @@
+# Sandbox Policy for Moltbot/ClawdBot Skill Execution
+#
+# Controls what skills and MCP servers can access
+
+# Filesystem access
+filesystem:
+  # Skills can only read/write within these paths
+  allowed_paths:
+    - "$HOME/.moltbot/data/"
+    - "$HOME/.moltbot/cache/"
+    - "/tmp/moltbot/"
+  # Explicitly deny access to sensitive directories
+  denied_paths:
+    - "$HOME/.ssh/"
+    - "$HOME/.config/gcloud/"
+    - "$HOME/.config/puretensor/"
+    - "$HOME/.clawdbot/credentials/"
+    - "$HOME/.moltbot/credentials/"
+    - "/etc/"
+    - "/var/log/"
+
+# Network access
+network:
+  # Skills can only connect to these endpoints
+  allowed_hosts:
+    - "api.telegram.org"
+    - "discord.com"
+    - "gateway.discord.gg"
+    - "api.twitter.com"
+    - "oauth2.googleapis.com"
+    - "www.googleapis.com"
+  # Block all other outbound connections
+  default_policy: "deny"
+
+# Process execution
+process:
+  # Skills cannot spawn child processes by default
+  allow_exec: false
+  # Exceptions (if needed):
+  # allowed_commands:
+  #   - "/usr/bin/curl"
+
+# Resource limits
+resources:
+  max_memory_mb: 512
+  max_cpu_percent: 50
+  max_file_size_mb: 100
+  max_open_files: 64
+  timeout_seconds: 300
+
+# MCP server policy
+mcp:
+  # Only allow MCP servers from verified sources
+  allow_remote: false
+  # If remote MCP is needed:
+  # allowed_servers:
+  #   - "https://verified-server.example.com"
+  # Require minimum mcp-remote version
+  min_mcp_remote_version: "0.1.16"
